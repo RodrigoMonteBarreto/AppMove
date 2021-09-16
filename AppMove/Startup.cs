@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System.IO;
+using AppMove.Profiles;
 
 namespace AppMove
 {
@@ -34,7 +35,7 @@ namespace AppMove
             services.AddDbContext<ProdutoContext>(
                context => context.UseSqlite(Configuration.GetConnectionString("Default")));
             services.AddScoped<IProductRepository, ProductRepository>();
-            
+            services.AddAutoMapper(typeof(ProductProfile));
             services.AddControllers();
             services.AddSwaggerGen(c =>
              {
